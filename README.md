@@ -3,7 +3,7 @@
 Actividad **GA1-220501094-01-AA1-EV04 – Fundamentos en Pandas**
 *Explorando Instacart: descubre patrones de compra.*
 
-Aprendiz: _escriba aquí su nombre_
+Aprendiz: Juan Camilo Sarrazola Agudelo
 
 ## Contenido
 
