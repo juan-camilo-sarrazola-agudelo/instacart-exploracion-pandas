@@ -1,0 +1,11 @@
+Dataset,Problema identificado,Evidencia encontrada,Posible impacto,Acción propuesta
+orders,Valores faltantes en days_since_prior_order,"28.819 NaN (6,02 %); todos con order_number = 1",Si se rellenan con 0 se distorsiona el promedio de días entre compras,"Mantener NaN, convertir a Int64 y crear la marca es_primer_pedido"
+orders,Filas duplicadas,"15 filas idénticas, todas con order_dow = 3 y hora = 2",Conteos inflados en esa franja; order_id deja de ser clave única,drop_duplicates() y verificar unicidad de order_id
+orders,Tope en days_since_prior_order,Valor 30: 51.338 pedidos frente a 2.673 con 29,El promedio subestima el tiempo entre compras,Tratar 30 como «30 o más» y usar la mediana
+orders,Código de día sin diccionario,"order_dow con valores [0, 1, 2, 3, 4, 5, 6] sin etiquetas",No se puede afirmar qué día de la semana compran más,Confirmar el diccionario con la fuente y convertir a categoría ordenada
+orders + order_products,Pedidos sin detalle de productos,"28.906 pedidos (6,04 %) no están en order_products",Los análisis de productos usan solo una parte de los pedidos,Elegir y documentar el tipo de unión (inner/left)
+products,Valores faltantes en product_name,"1.258 NaN, todos en pasillo 100 y departamento 21 ('missing')",9.547 artículos comprados no se pueden identificar,Etiquetar como 'Desconocido' y excluir de rankings por nombre y categoría
+products,Nombres repetidos con distinto formato,141 nombres repetidos al ignorar mayúsculas/espacios; 403 con espacios dobles,Ventas de un mismo producto repartidas en varias filas,Normalizar el texto y revisar los repetidos; agrupar por product_id
+aisles / departments,Categorías de relleno,Pasillo 'missing' (id 100) y departamento 'missing' (id 21),Aparecerían como una categoría más en los análisis por grupo,Excluir o etiquetar como 'Sin clasificar' en los reportes
+order_products,Valores faltantes en add_to_cart_order,836 NaN en 70 pedidos de más de 64 productos,Mínimo; solo impide analizar el orden en carritos muy grandes,"Convertir a Int64, conservar NaN y documentar el límite de 64"
+orders / order_products,Tipos no óptimos,days_since_prior_order y add_to_cart_order en float64; reordered 0/1 en int64,Valores como 30.0 o 1.0; ocupa más memoria y es menos claro,"Int64 para enteros con nulos, bool para reordered, category para textos repetidos"

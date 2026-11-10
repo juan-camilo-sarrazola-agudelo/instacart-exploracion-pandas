@@ -1,0 +1,6 @@
+Dataset,Archivo,Filas,Columnas,Tipos de datos,Observaciones
+orders,instacart_orders.csv,478967,6,"int64 ×5, float64 ×1","days_since_prior_order: 28.819 ausentes (6,02 %); days_since_prior_order guarda enteros como float64; 15 filas duplicadas."
+products,products.csv,49694,4,"int64 ×3, str ×1","product_name: 1.258 ausentes (2,53 %)."
+aisles,aisles.csv,134,2,"int64 ×1, str ×1",Sin ausentes ni filas duplicadas.
+departments,departments.csv,21,2,"int64 ×1, str ×1",Sin ausentes ni filas duplicadas.
+order_products,order_products.csv,4545007,4,"int64 ×3, float64 ×1","add_to_cart_order: 836 ausentes (0,02 %); add_to_cart_order guarda enteros como float64."
