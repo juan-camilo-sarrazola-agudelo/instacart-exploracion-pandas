@@ -27,8 +27,9 @@ instacart-exploracion-pandas/
 ├── README.md
 ├── .gitignore
 ├── requirements.txt
-├── data/                               # CSV de Instacart (no se versionan, ver «Datos»)
-│   └── .gitkeep
+├── data/
+│   └── raw/                            # CSV de Instacart (no se versionan, ver «Datos»)
+│       └── .gitkeep
 ├── notebooks/
 │   ├── 00_entorno.ipynb                # Comprobación del entorno (pandas) y función franja
 │   ├── 01_exploracion_instacart.ipynb  # EV04: exploración e indexación con Pandas
@@ -39,8 +40,7 @@ instacart-exploracion-pandas/
     └── hallazgos_calidad.csv           # Tabla generada por el notebook 02
 ```
 
-> La guía propone `data/raw/`. Este proyecto conserva `data/` (usada desde la EV04) para no romper el notebook 01;
-> el notebook 02 busca los CSV en `data/raw/` y, si no están, en `data/`, así que funciona con cualquiera de las dos.
+> Los datos originales van en `data/raw/`, como propone la guía. Los notebooks 01 y 02 leen los CSV desde esa carpeta.
 
 ## Datos
 
@@ -52,10 +52,10 @@ instacart-exploracion-pandas/
 | `departments.csv` | `departments` | 21 | Nombres de los departamentos |
 | `order_products.csv` | `order_products` | 4.545.007 | Productos de cada pedido, posición en el carrito y recompra |
 
-Los CSV usan `;` como separador y **no se suben al repositorio** (`data/*.csv` y `data/**/*.csv` están en `.gitignore`)
+Los CSV usan `;` como separador y **no se suben al repositorio** (`data/**/*.csv` está en `.gitignore`)
 porque en conjunto pesan más de 100 MB y `order_products.csv` (≈90 MB) supera los 50 MB que GitHub recomienda como máximo por archivo.
-Son los archivos del conjunto de datos de Instacart entregados en la formación; para reproducir el trabajo, cópielos en `data/`
-(o `data/raw/`) con exactamente estos nombres.
+Son los archivos del conjunto de datos de Instacart entregados en la formación; para reproducir el trabajo, cópielos en `data/raw/`
+con exactamente estos nombres.
 
 ## Reproducir el diagnóstico (EV06)
 
@@ -69,7 +69,7 @@ Son los archivos del conjunto de datos de Instacart entregados en la formación;
    python -m pip install -r requirements.txt
    ```
 
-2. Copiar los cinco CSV en `data/`.
+2. Copiar los cinco CSV en `data/raw/`.
 3. Abrir JupyterLab y ejecutar el notebook completo:
 
    ```powershell
@@ -115,3 +115,4 @@ Dependencias principales: Python 3.x, `pandas` 3.1 y `jupyterlab` (lista complet
 | `v1.0` | Entrega EV04: `develop` integrado en `main` |
 | `v1.1` | EV04 con salidas guardadas |
 | `v2.0` | Entrega EV06: diagnóstico de calidad (rama `feat/ev06-diagnostico-calidad`) |
+| `v2.1` | Datos en `data/raw/` según la estructura de la guía |
